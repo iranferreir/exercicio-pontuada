@@ -1,15 +1,17 @@
 import os
 
-# Função sem retorno.
-def logoSenai():
-    os.system("cls || clear")
-    print("=== SENAI === ")
-
 # Definindo listas vazias para armazenar os dados dos usuários
 nomes = []
 idades = []
 alturas = []
 pesos = []
+lista_IMC = []
+sobrenome = []
+
+# Função sem retorno.
+def logoSenai():
+    os.system("cls || clear")
+    print("=== SENAI === ")
 
 # Solicitando os dados dos usuários em um loop
 while True:
@@ -20,23 +22,54 @@ while True:
     if nome.lower() == 'sair':
         break
     
+    sobrenomes = input("digite seu sobrenome: ")
     idade = int(input("Digite a idade do usuário: "))
     altura = float(input("Digite a altura do usuário (em metros): "))
     peso = float(input("Digite o peso do usuário (em quilogramas): "))
     
     # Adicionando os dados às listas
     nomes.append(nome)
+    sobrenome.append(sobrenome)
     idades.append(idade)
     alturas.append(altura)
     pesos.append(peso)
+
+# Funcoes com retrono
+def calcula_imc(a,b):
+    lista_IMC =[]
+    for i,peso in enumerate(a):
+        IMC = peso /b[i]**2
+        lista_IMC.append(IMC)
+    return(lista_IMC)    
+
+IMC = calcula_imc(peso, altura)
+ 
+def Interpretação_IMC(a):
+    for numero in a:
+        if numero < 18.5:
+            print("Abaixo do peso")      
+        elif numero >= 18.5 and numero < 25:
+            print("peso normal")
+        elif numero >= 25 and numero < 30:
+            print("sobrepeso")     
+        elif numero >= 30 and numero < 35:
+            print("Obesidade grau I")
+        elif numero >= 35 and numero < 40:
+            print("Obesidade grau II")
+        elif numero >= 40:
+            IMC - print("Obesidade grau III")  
+
+Interpretação_IMC(lista_IMC)    
 
 # Exibindo os dados armazenados
 logoSenai()
 print("\nDados dos usuários:")
 for i in range(len(nomes)):
+    print("="*20)
     print(f"Usuário {i+1}:")
-    print("Nome:", nomes[i])
+    print("Nome:", nomes[i], sobrenome[i])
     print("Idade:", idades[i])
     print("Altura:", alturas[i], "metros")
     print("Peso:", pesos[i], "quilogramas")
-    print()
+    print("IMC:" , lista_IMC[i])
+    Interpretação_IMC(lista_IMC)
